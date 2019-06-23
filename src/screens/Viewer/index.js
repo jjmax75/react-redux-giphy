@@ -1,20 +1,20 @@
 import "./Viewer.css";
-import React, { useState } from "react";
+import React from "react";
 
 import SearchControl from "./../../components/molecules/SearchControl";
 import DisplayResult from "./../../components/molecules/DisplayResult";
 
 const Viewer = props => {
-	const [result, setResult] = useState(null);
+	// const [result, setResult] = useState(null);
 
-	const getResult = async term => {
-		const result = await fetch(
-			`https://api.giphy.com/v1/gifs/random?api_key=e26089724ab941889d776827bf7c0c32&tag=${term}`
-		);
-		const parsedResult = await result.json();
+	// const getResult = async term => {
+	// 	const result = await fetch(
+	// 		`https://api.giphy.com/v1/gifs/random?api_key=e26089724ab941889d776827bf7c0c32&tag=${term}`
+	// 	);
+	// 	const parsedResult = await result.json();
 
-		setResult(parsedResult);
-	};
+	// 	setResult(parsedResult);
+	// };
 
 	return (
 		<div className="App">
@@ -22,13 +22,13 @@ const Viewer = props => {
 			<main>
 				<SearchControl
 					label="Search for a Gif"
-					getResult={term => getResult(term)}
+					getResult={term => props.getGif(term)}
 					buttonName="Search"
 				/>
-				{result && (
+				{props.imageUrl && (
 					<DisplayResult
-						imageUrl={result.data.fixed_height_downsampled_url}
-						imageDescription={result.data.fixed_height_downsampled_url}
+						imageUrl={props.imageUrl}
+						imageDescription={props.imageUrl}
 					/>
 				)}
 			</main>
