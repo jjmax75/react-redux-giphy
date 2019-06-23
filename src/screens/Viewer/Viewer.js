@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./Viewer.css";
 
 function App() {
   return (
